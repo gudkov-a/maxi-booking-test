@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import datetime
+from currency_modules.factories import JsonFactory, XMLFactory
 
 app = Flask(__name__)
 
@@ -11,7 +11,13 @@ def index():
 
 @app.route('/get_currency')
 def get_currency():
-    return f'currency info, at {datetime.datetime.now().strftime("%H:%M")}'
+    for f in [JsonFactory, XMLFactory]:
+        factory = f()
+        url, getter, parser = factory.get_source(), factory.get_receiver(), factory.get_parser()
+        raw_data = getter(url).get()
+        result = parser(raw_data).parse()
+        if result:
+            return result
 
 
 if __name__ == '__main__':
