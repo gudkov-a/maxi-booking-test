@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import datetime
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ def index():
 
 @app.route('/get_currency')
 def get_currency():
-    return 'currency info'
+    return f'currency info, at {datetime.datetime.now().strftime("%H:%M")}'
 
 
 if __name__ == '__main__':
