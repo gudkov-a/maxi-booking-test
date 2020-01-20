@@ -19,7 +19,6 @@ def get_currency():
         raw_data = receiver.get()
         response = parser.parse(raw_data)
         if response:
-            str(response)
             time_stamp = datetime.datetime.now().strftime('%H:%M:%S')
             result = 'Euro is {}, updated at {}'.format(str(response), time_stamp)
             break
