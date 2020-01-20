@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from currency_modules.factories import JsonFactory, XMLFactory
+import datetime
 
 app = Flask(__name__)
 
@@ -11,14 +12,16 @@ def index():
 
 @app.route('/get_currency')
 def get_currency():
-    result = 'Euro is:'
+    result = ''
     for f in [JsonFactory, XMLFactory]:
         factory = f()
         url, receiver, parser = factory.get_source(), factory.get_receiver(), factory.get_parser()
         raw_data = receiver.get()
         response = parser.parse(raw_data)
         if response:
-            result += str(response)
+            str(response)
+            time_stamp = datetime.datetime.now().strftime('%H:%M:%S')
+            result = 'Euro is {}, updated at {}'.format(str(response), time_stamp)
             break
     return result
 

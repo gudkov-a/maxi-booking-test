@@ -7,8 +7,20 @@ function get_currency () {
         });
 }
 
-$(document).ready(function() {
-    window.setInterval(function(){
+function decrement_timer() {
+    var current_value = $('.refresh_timer').text();
+    if (current_value > 1) {
+        current_value -= 1;
+        $('.refresh_timer').text(current_value);
+    } else if (current_value == 1) {
         get_currency();
-    }, 10000);
+        $('.refresh_timer').text(10);
+    }
+}
+
+$(document).ready(function() {
+    decrement_timer();
+    window.setInterval(function(){
+        decrement_timer();
+    }, 1000);
 });
