@@ -13,9 +13,9 @@ def index():
 def get_currency():
     for f in [JsonFactory, XMLFactory]:
         factory = f()
-        url, getter, parser = factory.get_source(), factory.get_receiver(), factory.get_parser()
-        raw_data = getter(url).get()
-        result = parser(raw_data).parse()
+        url, receiver, parser = factory.get_source(), factory.get_receiver(), factory.get_parser()
+        raw_data = receiver.get()
+        result = parser.parse(raw_data)
         if result:
             return result
 

@@ -3,7 +3,7 @@ from urllib.request import Request, urlopen
 
 class BaseGetter:
 
-    def __init__(self, url,):
+    def __init__(self, url):
         self.__url = url
         self.__timeout = 1
 
