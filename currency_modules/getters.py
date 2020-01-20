@@ -25,5 +25,5 @@ class BaseGetter:
 
     def __compose_request(self):
         agent = self.__get_agent()
-        request = Request(self.__url, data=None, headers={'User-Agent': agent})
+        request = Request(self.__url, data=None, headers={'User-Agent': agent}, method='GET')
         return request

@@ -11,13 +11,16 @@ def index():
 
 @app.route('/get_currency')
 def get_currency():
+    result = 'Euro is:'
     for f in [JsonFactory, XMLFactory]:
         factory = f()
         url, receiver, parser = factory.get_source(), factory.get_receiver(), factory.get_parser()
         raw_data = receiver.get()
-        result = parser.parse(raw_data)
-        if result:
-            return result
+        response = parser.parse(raw_data)
+        if response:
+            result += str(response)
+            break
+    return result
 
 
 if __name__ == '__main__':

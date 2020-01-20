@@ -56,7 +56,7 @@ class XMLParser(Parser):
         return root.iter()
 
     def search(self, obj) -> float:
-        if obj.attrib.get('currency') == 'EUR':
+        if obj.attrib.get('currency') == 'RUB':
             return float(obj.attrib.get('rate'))
 
     def deserialize_raw_data(self, data) -> str:

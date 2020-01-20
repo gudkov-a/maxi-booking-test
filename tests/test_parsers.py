@@ -371,4 +371,4 @@ def test_xml_parser():
     """
     xml_parser = XMLParser()
     result = xml_parser.parse(sample_data)
-    assert result is None
+    assert result == 68.25
